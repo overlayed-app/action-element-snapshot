@@ -7,7 +7,8 @@
     "lint": "eslint .",
     "build": "tsc -p . && cpy src/*.html dist && cpy src/*.js dist",
     "test": "jest --coverage",
-    "release": "standard-version"
+    "release": "standard-version",
+    "commit": "npx git-cz"
   },
   "standard-version": {
     "scripts": {
@@ -30,6 +31,7 @@
     "@typescript-eslint/eslint-plugin": "^2.13.0",
     "@typescript-eslint/parser": "^2.13.0",
     "cpy-cli": "^3.0.0",
+    "cz-conventional-changelog": "^3.0.2",
     "eslint": "^6.8.0",
     "jest": "^24.9.0",
     "standard-version": "^7.0.1",
@@ -41,5 +43,10 @@
     "@actions/github": "^2.0.0",
     "imgur": "^0.3.1",
     "puppeteer": "^2.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
