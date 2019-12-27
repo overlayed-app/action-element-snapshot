@@ -15,7 +15,7 @@ export async function runAction(source_url: string, token?: string) {
     await client.pulls.createReview({
       ...pr,
       event: 'COMMENT',
-      body: `Hello. I rendered the referenced component as part of Validation. Here it is:\n[Element Rendering Preview](${url})\n> Source: ${source_url}`,
+      body: `Hello. I rendered the referenced component as part of Validation. Here it is:\n![Element Rendering Preview](${url})\n> Source: ${source_url}`,
     })
   }
 }
