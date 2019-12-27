@@ -1,6 +1,6 @@
 {
   "name": "action-element-snapshot",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "GitHub action to take element screenshots",
   "main": "dist/index.js",
   "scripts": {
