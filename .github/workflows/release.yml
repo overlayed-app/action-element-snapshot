@@ -1,0 +1,42 @@
+name: Release CD
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: configure git creds
+        run: |
+          git config --global user.name overlayed-app-bot
+          git config --global user.email bot@overlayed.app
+          git config --global credential.helper store
+          echo https://overlayed-app-bot:${{ secrets.GITHUB_TOKEN }}@github.com > ~/.git-credentials
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install, build, and test
+        run: |
+          npm ci
+          npm run build --if-present
+          npm test
+        env:
+          CI: true
+      - name: release
+        run: npm run release
+      - name: distribute
+        run: |
+          git push origin master
+          git push --tags
+      - name: cleanup git creds
+        run: rm ~/.git-credentials
+        if: always()

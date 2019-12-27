@@ -1,0 +1,45 @@
+{
+  "name": "action-element-snapshot",
+  "version": "1.0.0",
+  "description": "GitHub action to take element screenshots",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "build": "tsc -p . && cpy src/*.html dist && cpy src/*.js dist",
+    "test": "jest --coverage",
+    "release": "standard-version"
+  },
+  "standard-version": {
+    "scripts": {
+      "prerelease": "npm run lint && npm run build && npm run test",
+      "postcommit": "npx @overlayed-app/standard-version-tagger"
+    },
+    "skip": {
+      "tag": true
+    }
+  },
+  "jest": {
+    "preset": "ts-jest"
+  },
+  "author": "Ben Greenier",
+  "license": "MIT",
+  "devDependencies": {
+    "@overlayed-app/standard-version-tagger": "^1.1.1",
+    "@types/jest": "^24.0.24",
+    "@types/puppeteer": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.13.0",
+    "@typescript-eslint/parser": "^2.13.0",
+    "cpy-cli": "^3.0.0",
+    "eslint": "^6.8.0",
+    "jest": "^24.9.0",
+    "standard-version": "^7.0.1",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.4"
+  },
+  "dependencies": {
+    "@actions/core": "^1.2.0",
+    "@actions/github": "^2.0.0",
+    "imgur": "^0.3.1",
+    "puppeteer": "^2.0.0"
+  }
+}

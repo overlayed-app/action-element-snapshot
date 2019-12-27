@@ -1,0 +1,15 @@
+name: 'action-element-snapshot'
+description: 'Take an element screenshot'
+inputs:
+  source_url:
+    description: 'Location of the element'
+    required: true
+  token:
+    description: 'Github token'
+    required: true
+outputs:
+  image_url:
+    description: 'Location of the screenshot'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
