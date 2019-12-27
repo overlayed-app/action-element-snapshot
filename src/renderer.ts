@@ -1,6 +1,8 @@
 import puppeteer from 'puppeteer'
 import { readFileSync } from 'fs'
 
+const isCi = process.env.CI === '1' || process.env.CI === 'true'
+
 /**
  * Screenshot a react component
  * @param url url to render from
@@ -12,6 +14,7 @@ export default async function(url: string) {
       width: 1920,
       height: 1080,
     },
+    args: isCi ? ['--no-sandbox', '--disable-setuid-sandbox'] : [],
   })
   const page = await browser.newPage()
   await page.goto(`file:///${__dirname}/renderer-tmpl.html`)

@@ -1,14 +1,14 @@
-import core from '@actions/core'
+import { getInput, setFailed } from '@actions/core'
 import { runAction } from './runner'
 
-runAction(core.getInput('source_url'), core.getInput('token'))
+runAction(getInput('source_url'), getInput('token'))
   .then(() => {
     console.log('Success.')
   })
   .catch(ex => {
     const errMessage = `Failed: ${ex}.`
     console.log(errMessage)
-    core.setFailed(errMessage)
+    setFailed(errMessage)
   })
   .finally(() => {
     console.log('Run complete.')

@@ -10,6 +10,9 @@ inputs:
 outputs:
   image_url:
     description: 'Location of the screenshot'
-runs:
-  using: 'node12'
-  main: 'dist/index.js'
+    runs:
+      using: 'docker'
+      image: 'Dockerfile'
+      env:
+        INPUT_SOURCE_URL: ${{ inputs.source_url }}
+        INPUT_TOKEN: ${{ inputs.token }}

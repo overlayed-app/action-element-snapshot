@@ -4,6 +4,7 @@
   "description": "GitHub action to take element screenshots",
   "main": "dist/index.js",
   "scripts": {
+    "start": "node dist/index.js",
     "lint": "eslint .",
     "build": "tsc -p . && cpy src/*.html dist && cpy src/*.js dist",
     "test": "jest --coverage",
