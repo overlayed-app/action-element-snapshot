@@ -8,13 +8,13 @@
     "lint": "eslint .",
     "build": "tsc -p . && cpy src/*.html dist && cpy src/*.js dist",
     "test": "jest --coverage",
-    "release": "standard-version",
+    "release": "standard-version --preset @overlayed-app/dist-tagger",
     "commit": "npx git-cz"
   },
   "standard-version": {
     "scripts": {
       "prerelease": "npm run lint && npm run build && npm run test",
-      "postcommit": "npx @overlayed-app/standard-version-tagger"
+      "postcommit": "npx @overlayed-app/conventional-changelog-dist-tagger"
     },
     "skip": {
       "tag": true
@@ -26,7 +26,7 @@
   "author": "Ben Greenier",
   "license": "MIT",
   "devDependencies": {
-    "@overlayed-app/standard-version-tagger": "^2.0.0",
+    "@overlayed-app/conventional-changelog-dist-tagger": "^4.0.0",
     "@types/jest": "^24.0.25",
     "@types/puppeteer": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^2.13.0",
